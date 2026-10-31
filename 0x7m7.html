@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>0x7m7</title>
+<meta name="description" content="C++ developer working on systems infrastructure, runtimes, and AI inference.">
+<meta name="theme-color" content="#000000">
+<style>
+:root{
+  --bg:#000;--fg:#ededed;--mut:#8a8a8a;--line:#222;--acc:#8fb4ff;--slot:#111;
+  --mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--bg:#fff;--fg:#111;--mut:#666;--line:#e4e4e4;--acc:#2450c8;--slot:#f3f3f3}
+}
+:root[data-theme="light"]{--bg:#fff;--fg:#111;--mut:#666;--line:#e4e4e4;--acc:#2450c8;--slot:#f3f3f3}
+:root[data-theme="dark"]{--bg:#000;--fg:#ededed;--mut:#8a8a8a;--line:#222;--acc:#8fb4ff;--slot:#111}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+main{max-width:760px;margin:0 auto;padding:72px 24px 96px}
+a{color:var(--fg);text-decoration-color:var(--mut);text-underline-offset:4px}
+a:hover{color:var(--acc);text-decoration-color:var(--acc)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+h1{font:600 clamp(40px,9vw,72px)/1 var(--mono);letter-spacing:-.04em;margin:0 0 20px}
+h1 i{font-style:normal;color:var(--mut)}
+.tag{font:14px/1.5 var(--mono);color:var(--mut);margin:0 0 28px}
+.lede{font-size:19px;max-width:56ch;margin:0 0 48px}
+h2{font:500 14px/1.4 var(--mono);color:var(--mut);margin:64px 0 20px;padding-top:20px;border-top:1px solid var(--line)}
+h3{font:600 16px/1.4 var(--sans);margin:28px 0 8px}
+ul{margin:0;padding:0;list-style:none}
+li{padding:5px 0 5px 20px;position:relative;color:var(--fg)}
+li::before{content:"";position:absolute;left:0;top:.95em;width:8px;height:1px;background:var(--mut)}
+code{font:.9em var(--mono);color:var(--acc)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+@media (max-width:640px){.grid{grid-template-columns:1fr}}
+/* scheduler widget */
+.sched{border:1px solid var(--line);padding:18px;margin:0 0 8px;font:12px/1.4 var(--mono);color:var(--mut)}
+.sched .row{display:flex;align-items:center;gap:10px;margin:6px 0}
+.sched .lbl{width:64px;flex:none}
+.cells{display:flex;gap:3px;flex:1;min-width:0}
+.cell{height:18px;flex:1;background:var(--slot);transition:background .25s}
+.cell.on{background:var(--acc)}
+.cell.old{background:var(--mut)}
+.sched .foot{display:flex;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:6px}
+.sched b{color:var(--fg);font-weight:500}
+.tools{display:grid;grid-template-columns:140px 1fr;gap:10px 20px;margin:0}
+.tools dt{font:14px/1.6 var(--mono);color:var(--mut)}
+.tools dd{margin:0}
+@media (max-width:640px){.tools{grid-template-columns:1fr;gap:0}.tools dd{margin-bottom:14px}}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font:13px var(--mono);color:var(--mut);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<main>
+  <p class="tag">C++ / systems infrastructure / runtime and inference</p>
+  <h1>0x7m7<i>_</i></h1>
+  <p class="lede">I write C++ for the layer under AI workloads: runtimes, schedulers, memory, and the servers that keep GPUs busy.</p>
+
+  <div class="sched" role="img" aria-label="Animation of a continuous batching scheduler filling GPU batch slots with requests">
+    <div class="row"><span class="lbl">queue</span><div class="cells" id="q"></div></div>
+    <div class="row"><span class="lbl">batch</span><div class="cells" id="b"></div></div>
+    <div class="foot"><span>continuous batching</span><span>slots in use <b id="u">0</b>/16</span><span>step <b id="s">0</b></span></div>
+  </div>
+
+  <h2>Focus</h2>
+  <div class="grid">
+    <div>
+      <h3>C++</h3>
+      <ul>
+        <li>Modern C++17/20/23: RAII, move semantics, concepts, <code>constexpr</code></li>
+        <li>Memory model, atomics, lock-free structures, cache-aware design</li>
+        <li>Custom allocators, arenas, zero-copy buffers</li>
+        <li>Profiling with <code>perf</code>, VTune, Google Benchmark</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Runtime and systems</h3>
+      <ul>
+        <li>Async I/O with <code>epoll</code>, <code>io_uring</code>, and coroutine schedulers</li>
+        <li>Thread pools, work stealing, NUMA-aware scheduling</li>
+        <li>TCP, RDMA, and gRPC services</li>
+        <li>Linux internals, shared-memory IPC, production daemons</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Inference runtime</h3>
+      <ul>
+        <li>Inference engines and model-serving runtimes</li>
+        <li>CUDA/ROCm integration, kernel launch pipelines, GPU memory</li>
+        <li>Continuous batching, KV-cache management, request scheduling</li>
+        <li>Quantization, operator fusion, graph execution</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Building now</h3>
+      <ul>
+        <li>Low-latency inference servers and runtime internals</li>
+        <li>High-throughput proxies, schedulers, and task queues</li>
+        <li>Memory-efficient storage engines and caches</li>
+        <li>Open source inference and systems infrastructure</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Principles</h2>
+  <ul>
+    <li>Correctness, performance, and simplicity are design constraints from day one.</li>
+    <li>Explicit ownership and deterministic resource lifetimes.</li>
+    <li>Tested under ASan, TSan, and UBSan, and benchmarked before shipping.</li>
+    <li>Contributions over credentials: build in public and verify with results.</li>
+  </ul>
+
+  <h2>Toolchain</h2>
+  <dl class="tools">
+    <dt>language</dt><dd>C++ with GCC and Clang</dd>
+    <dt>build</dt><dd>CMake, Bazel, Ninja</dd>
+    <dt>analysis</dt><dd><code>clang-tidy</code>, <code>cppcheck</code>, ASan / TSan / UBSan, Valgrind</dd>
+    <dt>profiling, tests</dt><dd><code>perf</code>, <code>gdb</code>, Google Test, Google Benchmark</dd>
+    <dt>gpu</dt><dd>CUDA, Nsight</dd>
+    <dt>environment</dt><dd>Linux, Git, Docker</dd>
+  </dl>
+
+  <h2>Contact</h2>
+  <p><a href="https://github.com/0x7m7">github.com/0x7m7</a></p>
+
+  <footer><span>0x7m7</span><span>built in public</span></footer>
+</main>
+<script>
+(function(){
+  var N=16,q=document.getElementById('q'),b=document.getElementById('b'),
+      u=document.getElementById('u'),s=document.getElementById('s');
+  var qc=[],bc=[],i;
+  for(i=0;i<N;i++){var c=document.createElement('div');c.className='cell';q.appendChild(c);qc.push(c);
+    var d=document.createElement('div');d.className='cell';b.appendChild(d);bc.push(d);}
+  var slots=new Array(N).fill(0),step=0,queue=0;
+  function tick(){
+    step++;
+    for(var k=0;k<N;k++){if(slots[k]>0)slots[k]--;}
+    if(Math.random()<.7)queue=Math.min(N,queue+1+(Math.random()<.3?1:0));
+    for(k=0;k<N&&queue>0;k++){
+      if(slots[k]===0){slots[k]=3+Math.floor(Math.random()*8);queue--;}
+    }
+    var used=0;
+    for(k=0;k<N;k++){
+      bc[k].className='cell'+(slots[k]>0?(slots[k]<3?' old':' on'):'');
+      if(slots[k]>0)used++;
+      qc[k].className='cell'+(k<queue?' on':'');
+    }
+    u.textContent=used;s.textContent=step;
+  }
+  tick();
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(tick,420);}
+})();
+</script>
+</body>
+</html>
